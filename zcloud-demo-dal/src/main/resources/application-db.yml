@@ -1,0 +1,64 @@
+spring:
+  datasource:
+    dynamic:
+      enable: true
+    druid:
+      # JDBC 配置(驱动类自动从url的mysql识别,数据源类型自动识别)
+      master:
+        url: jdbc:mysql://${DB_MASTER_HOST}:${MYSQL_PORT:3306}/${DB_MASTER_NAME:test}?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai
+        username:  ${DB_MASTER_USERNAME:root}
+        password:  ${DB_MASTER_PASSWORD:root}
+        driver-class-name:  com.mysql.cj.jdbc.Driver
+      slave:
+        url: jdbc:mysql://${DB_SLAVE_HOST:localhost}:${MYSQL_PORT:3306}/${DB_SLAVE_NAME:test}?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai
+        username:  ${DB_SLAVE_USERNAME:root}
+        password:  ${DB_SLAVE_PASSWORD:root}
+        driver-class-name:  com.mysql.cj.jdbc.Driver
+      log:
+        url: jdbc:mysql://${DB_LOG_HOST:localhost}:${MYSQL_PORT:3306}/${DB_LOG_NAME:test}?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai
+        username:  ${DB_LOG_USERNAME:root}
+        password:  ${DB_LOG_PASSWORD:root}
+        driver-class-name:  com.mysql.cj.jdbc.Driver
+      #连接池配置(通常来说，只需要修改initialSize、minIdle、maxActive
+      initial-size: 1
+      max-active: 20
+      min-idle: 1
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      #打开PSCache，并且指定每个连接上PSCache的大小
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      validation-query: SELECT 'x'
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      #配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      filters: stat,wall
+      # WebStatFilter配置，说明请参考Druid Wiki，配置_配置WebStatFilter
+      #是否启用StatFilter默认值true
+      web-stat-filter.enabled: true
+      web-stat-filter.url-pattern:  /*
+      web-stat-filter.exclusions: "*.js , *.gif ,*.jpg ,*.png ,*.css ,*.ico , /druid/*"
+      web-stat-filter.session-stat-max-count: 1000
+      web-stat-filter.profile-enable: true
+      # StatViewServlet配置
+      #展示Druid的统计信息,StatViewServlet的用途包括：1.提供监控信息展示的html页面2.提供监控信息的JSON API
+      #是否启用StatViewServlet默认值true
+      stat-view-servlet.enabled: true
+      stat-view-servlet.url-pattern:  /druid/*
+      #允许清空统计数据
+      stat-view-servlet.reset-enable:  true
+  #      stat-view-servlet.login-username: admin
+  #      stat-view-servlet.login-password: admin
+
+# MyBatis配置
+mybatis:
+  # 搜索指定包别名
+  typeAliasesPackage: com.zxw.zcloud.demo.dal.**.domain
+  #  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath*:mybatis/**/*Mapper.xml
+  # 加载全局的配置文件
+  configLocation: classpath:mybatis/mybatis-config.xml

@@ -1,0 +1,24 @@
+DB_MASTER_HOST: localhost
+DB_MASTER_NAME: zcloud_demo
+DB_MASTER_USERNAME: root
+DB_MASTER_PASSWORD: root
+
+DB_SLAVE_HOST: localhost
+DB_SLAVE_NAME: zcloud_demo
+DB_SLAVE_USERNAME: root
+DB_SLAVE_PASSWORD: root
+
+DB_LOG_HOST: localhost
+DB_LOG_NAME: zcloud_log
+DB_LOG_USERNAME: root
+DB_LOG_PASSWORD: root
+
+REDIS_HOST: localhost
+
+JOB_HOST: 39.106.210.244
+JOB_TOKEN: jferKLuhwru54fho8uJQAshdy4kjh
+
+ID_WORKERID: 1
+ID_DATACENTERID: 1
+
+ZCOUD_DEBUG: true

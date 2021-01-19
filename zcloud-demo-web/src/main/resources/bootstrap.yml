@@ -1,0 +1,21 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+# PageHelper分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+jasypt:
+  encryptor:
+    bean: encryptorBean
+
+logging:
+  level:
+    com.xykj.laiyifen.api: debug
+    org.springframework: warn
+    druid.sql.Statement: debug

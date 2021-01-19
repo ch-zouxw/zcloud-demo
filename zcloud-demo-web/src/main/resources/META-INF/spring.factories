@@ -1,0 +1,4 @@
+org.springframework.boot.SpringApplicationRunListener=\
+  com.zxw.zcloud.demo.web.listener.WebAppListener
+
+

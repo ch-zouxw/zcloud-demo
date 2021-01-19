@@ -1,0 +1,74 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: zcloud-demo-task
+  profiles:
+    active: dev,db
+
+  mail:
+    host: smtp.sina.com
+    username: xxxxxxxx@xxxxxxxxxxx.com
+    password: aaaaaaaaaaaa
+    properties:
+      mail:
+        smtp:
+          auth: false
+        starttls:
+          enable: false
+          required: false
+
+zcloud:
+  debug: ${ZCOUD_DEBUG:true}
+  jwt:
+    clientId: zcloud
+    base64Secret: xxxxxxxxxxxxxxx
+    name: zcloud
+    expiresSecond: 3600000
+  jasypt:
+    password: zcloud
+  snowflake:
+    workerId: ${ID_WORKERID:1}
+    datacenterId: ${ID_DATACENTERID:1}
+
+  job:
+    admin:
+      addresses: http://${JOB_HOST:localhost}:${JOB_PORT:8080}/xxl-job-admin
+    accessToken: ${JOB_TOKEN}
+    executor:
+      appname: ${spring.application.name}
+      address:
+      ip:
+      port: 9998
+      logpath: ./logs/job/jobhandler
+      logretentiondays: 30
+
+  # Swagger
+  swagger:
+    version: 1.0
+    enabled: true
+    title: Demo接口文档
+    description: Demo文档
+
+  sms:
+    aliyun:
+      accessKeyId: xxxxxxxxxxxxxxxxxxxxxxx
+      accessKeySecret: xxxxxxxxxxxxxxxxxxxxxxxxx
+      connection-timeout: 1000
+      read-timeout: 1000
+      signName: zcloud
+
+  aliyun:
+    dingtalk:
+      serverUrl: https://oapi.dingtalk.com/robot/send?access_token=
+      accessToken: eeeeeeeeeeeeeeeeeeeeeeeeee
+
+  redis:
+    redisson:
+      address: 127.0.0.1:6379
+      type: standalone
+      password:
+      database: 1
